@@ -1,14 +1,14 @@
 spring:
   security:
     user:
-      name: ${SPRING_SECURITY_USERNAME}
-      password: ${SPRING_SECURITY_PASSWORD}
+      name: admin_user_username
+      password: admin_user_password
       roles:
         - MANAGER
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: jdbc:postgresql://postgres_db:5432/business_manager
+    username: database_user
+    password: database_user_password
   flyway:
     schemas:
       - public

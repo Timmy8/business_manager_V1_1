@@ -1,15 +1,15 @@
 spring:
   security:
     user:
-      name: ${SPRING_SECURITY_USERNAME}
-      password: ${SPRING_SECURITY_PASSWORD}
+      name: admin_user_username
+      password: admin_user_password
 
 business-manager:
   services:
     manager-api:
-      uri: ${CORE_API_SERVICE_URI}
-      username: ${SPRING_SECURITY_USERNAME}
-      password: ${SPRING_SECURITY_PASSWORD}
+      uri: http://localhost:8081
+      username: admin_user_username
+      password: admin_user_password
 
       clients:
         uri: /manager-api/clients
