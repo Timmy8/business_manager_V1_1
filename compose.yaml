@@ -1,0 +1,66 @@
+services:
+  # Database service
+  postgres_db:
+    image: postgres:16-alpine
+    container_name: postgres-business-manager
+    environment:
+      POSTGRES_DB: business_manager
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - '5432:5432'
+    networks:
+      - backend
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+#  # Core-api service
+#  core-api-service:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    container_name: core-api-service
+#    entrypoint: ["java", "-jar", "./core-api-service.jar"]
+#    environment:
+#      SPRING_DATASOURCE_URL: ${POSTGRES_URL}
+#      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+#      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+#      SPRING_SECURITY_USERNAME: ${ADMIN_USERNAME}
+#      SPRING_SECURITY_PASSWORD: ${ADMIN_PASSWORD}
+#    depends_on:
+#      - postgres_db
+#    ports:
+#      - "8081:8081"
+#    networks:
+#      - frontend
+#      - backend
+#    volumes:
+#      - core-api-service:/app/logs
+#
+#      # Manager-ui service
+#  manager-ui-app:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    container_name: manager-ui-app
+#    entrypoint: ["java", "-jar", "./manager-ui-app.jar"]
+#    environment:
+#      CORE_API_SERVICE_URI: ${CORE_API_SERVICE_URI}
+#      SPRING_SECURITY_USERNAME: ${ADMIN_USERNAME}
+#      SPRING_SECURITY_PASSWORD: ${ADMIN_PASSWORD}
+#    depends_on:
+#      - core-api-service
+#    ports:
+#      - "8080:8080"
+#    networks:
+#      - frontend
+
+networks:
+  backend:
+    driver: bridge
+  frontend:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  core-api-service:

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clients list</title>
+    <style>
+        table, th, tr {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px 15px 10px 15px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+<a data-th-href="@{/manager/proposals/create}">+ Add proposal</a>
+<h1>Clients list</h1>
+<table>
+    <thead>
+    <tr>
+        <th class="col1">#</th>
+        <th class="col2">Name</th>
+        <th class="col3">Description</th>
+        <th class="col4">Price</th>
+        <th class="col5"></th>
+        <th class="col6"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="proposal : ${proposals}">
+        <td data-th-text="${proposal.id}" class="col1">id</td>
+        <td class="col2">
+            <a data-th-href="@{/manager/clients/{proposalId }(proposalId=${proposal.id})}"
+               data-th-text="${proposal.name}">name</a>
+        </td>
+        <td data-th-text="${proposal.description}" class="col3">description</td>
+        <td data-th-text="${proposal.price}" class="col4">price</td>
+        <td class="col5">
+            <a data-th-href="@{/manager/proposals/{proposalId}/edit(proposalId=${proposal.id})}"><button>edit</button></a>
+        </td>
+        <td class="col6">
+            <form method="post" data-th-action="@{/manager/proposals/{proposalId}/delete(proposalId=${proposal.id})}">
+                <button type="submit">delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

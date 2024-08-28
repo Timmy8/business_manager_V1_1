@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Proposal &laquo;[[${proposal.name}]]&raquo; editing</title>
+    <style>
+        input{
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<h2>Proposal &laquo;[[${proposal.name}]]&raquo; editing</h2>
+<div data-th-if="${errors}">
+    <h3>Errors:</h3>
+    <ul>
+        <li data-th-each="error: ${errors}" data-th-text="${error}">error</li>
+    </ul>
+</div>
+<form method="post" data-th-action="@{/manager/proposals/{proposalId}/edit(proposalId=${proposal.id})}">
+    <label>
+        Name:<br>
+        <input type="text" name="name" data-th-value="${payload != null ? payload.name : proposal.name}">
+    </label><br>
+    <label>
+        Description:<br>
+        <textarea name="description" data-th-text="${payload != null ? payload.description : proposal.description}"></textarea>
+    </label><br>
+    <label>
+        Price:<br>
+        <input type="text" name="price" data-th-value="${payload != null ? payload.price : proposal.price}">
+    </label><br>
+
+    <button type="submit">Edit</button>
+</form>
+</body>
+</html>

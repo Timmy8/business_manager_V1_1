@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" data-th-href="@{/styles/styles.css}">
+    <title>Registration</title>
+</head>
+<body>
+<div class="container">
+    <h2>Registration</h2>
+    <div data-th-if="${errors}">
+        <h3>Errors:</h3>
+        <ul>
+            <li data-th-each="error: ${errors}" data-th-text="${error}" style="color: red; font-size: 10px;">error</li>
+        </ul>
+    </div>
+
+    <form method="post" data-th-action="@{/registration}">
+        <label for="name">Enter name:</label>
+        <input type="text" name="name" id="name" data-th-value="${payload?.name}">
+
+        <label for="surname">Enter surname:</label>
+        <input type="text" name="surname" id="surname" data-th-value="${payload?.surname}">
+
+        <label for="phoneNumber">Enter phone number:</label>
+        <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="+375XXYYYYYYY">
+
+        <button type="submit">Registration</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+spring:
+  security:
+    user:
+      name: ${SPRING_SECURITY_USERNAME}
+      password: ${SPRING_SECURITY_PASSWORD}
+
+business-manager:
+  services:
+    manager-api:
+      uri: ${CORE_API_SERVICE_URI}
+      username: ${SPRING_SECURITY_USERNAME}
+      password: ${SPRING_SECURITY_PASSWORD}
+
+      clients:
+        uri: /manager-api/clients
+      proposals:
+        uri: /manager-api/proposals
+      appointments:
+        uri: /manager-api/appointments

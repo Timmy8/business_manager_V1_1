@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointment &laquo;#[[${appointment.id}]]&raquo; editing</title>
+    <style>
+        input{
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<h2>Appointment &laquo;#[[${appointment.id}]]&raquo; editing</h2>
+<div data-th-if="${errors}">
+    <h3>Errors:</h3>
+    <ul>
+        <li data-th-each="error: ${errors}" data-th-text="${error}">error</li>
+    </ul>
+</div>
+<form method="post" data-th-action="@{/manager/appointments/{appointmentId}/edit(appointmentId=${appointment.id})}">
+    <label>
+        Visit date:<br>
+        <input type="text" name="visitDate" data-th-value="${payload != null ? payload.visitDate : appointment.visitDate}">
+    </label><br>
+    <label>
+        Client ID:<br>
+        <input type="number" name="clientId" data-th-value="${payload != null ? payload.clientId : appointment.clientId}">
+    </label><br>
+    <label>
+        Proposal ID:<br>
+        <input type="number" name="proposalId" data-th-value="${payload != null ? payload.clientId : appointment.clientId}">
+    </label><br>
+
+    <button type="submit">Edit</button>
+</form>
+</body>
+</html>

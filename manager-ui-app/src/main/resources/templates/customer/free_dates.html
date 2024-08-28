@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" data-th-href="@{/styles/styles.css}">
+    <title>Make appointment</title>
+</head>
+<body>
+<div class="container">
+    <h1>Make appointment</h1>
+    <div data-th-if="${errors}">
+        <h3>Errors:</h3>
+        <ul>
+            <li data-th-each="error: ${errors}" data-th-text="${error}" style="color: red; font-size: 10px;">error</li>
+        </ul>
+    </div>
+
+    <form method="post" data-th-action="@{/appointment}">
+        <label for="visitDate">Visit date:</label>
+        <select name="visitDate" id="visitDate" required>
+            <option value="" disabled selected>Choose date</option>
+            <!-- Dates will be added using JavaScript -->
+        </select>
+
+        <label for="visitTime">Visit time:</label>
+        <select name="visitTime" id="visitTime" required>
+            <option value="" disabled selected>Choose time</option>
+            <!-- Times will be added using JavaScript -->
+        </select>
+
+        <label for="proposalId">Proposal:</label>
+        <select name="proposalId" id="proposalId" required>
+            <option value="" disabled selected>Choose proposal</option>
+            <option data-th-each="proposal : ${proposals}" data-th-value="${proposal.id}" data-th-text="${proposal.name} + ' - ' + ${proposal.price}">proposal</option>
+        </select>
+
+        <label for="phoneNumber">Enter your phone number:</label>
+        <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="+375XXYYYYYYY" value="+375">
+
+        <button type="submit">Create</button>
+    </form>
+    <a data-th-href="@{/registration}" style="font-size: small">Registration</a>
+</div>
+<script data-th-src="@{/script/script.js}"></script>
+</body>
+</html>

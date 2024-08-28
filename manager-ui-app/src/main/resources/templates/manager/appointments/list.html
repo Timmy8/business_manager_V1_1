@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clients list</title>
+    <style>
+        table, th, tr {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px 15px 10px 15px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+<a data-th-href="@{/manager/appointments/create}">+ Add proposal</a>
+<h1>Appointments list</h1>
+<table>
+    <thead>
+    <tr>
+        <th class="col1">#</th>
+        <th class="col2">Visit date</th>
+        <th class="col3">Client id</th>
+        <th class="col4">Proposals</th>
+        <th class="col5"></th>
+        <th class="col6"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="appointment : ${appointments}">
+        <td class="col1" data-th-text="${appointment.id}">id</td>
+        <td class="col2">
+            <span data-th-text="${#temporals.format(appointment.visitDate(), 'dd-MM HH:mm')}">visit date</span>
+        </td>
+        <td class="col3">
+            <a data-th-href="@{/manager/clients/{clientId}(clientId=${appointment.clientId})}"
+               data-th-text="${appointment.clientId}">client id</a>
+        </td>
+        <td class="col4">
+            <span data-th-each="proposal : ${appointment.proposals}"><span data-th-text="${proposal.name}"></span></span>
+        </td>
+        <td class="col5">
+            <a data-th-href="@{/manager/appointments/{appointmentId}/edit(appointmentId=${appointment.id})}"><button>edit</button></a>
+        </td>
+        <td class="col6">
+            <form method="post" data-th-action="@{/manager/appointments/{appointmentId}/delete(appointmentId=${appointment.id})}">
+                <button type="submit">delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
