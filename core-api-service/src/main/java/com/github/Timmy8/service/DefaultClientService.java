@@ -46,7 +46,7 @@ public class DefaultClientService implements ClientService{
            client.setDescription(description);
            client.setBlocked(blocked);
         }, () -> {
-            throw new NoSuchElementException("{api.clients.create.errors.client_not_found}");
+            throw new NoSuchElementException("api.clients.create.errors.client_not_found");
         });
     }
 
