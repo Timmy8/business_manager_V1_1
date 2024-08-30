@@ -3,6 +3,16 @@
 Business Manager is a comprehensive solution for managing business processes, including an API service, a user interface, and a Telegram bot for integration.
  > **Note:** Telegram bot is not available in the open version
 
+# Table of Contents
+- [Project Structure](#project-structure)
+- [Installation and Setup](#installation-and-setup)
+- [Technologies Used](#technologies-used)
+- [How to use](#how-to-use)
+  - [Pages for customers:](#pages-for-customers)
+  - [Pages for managers:](#pages-for-managers)
+  - [API endpoints:](#basic-api-url)
+- [How to Contribute](#how-to-contribute)
+
 ## Project Structure
 
 - **core-api-service**: Backend service implemented in Java to handle business logic and data.
