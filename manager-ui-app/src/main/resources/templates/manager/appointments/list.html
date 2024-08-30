@@ -32,7 +32,7 @@
     <tr data-th-each="appointment : ${appointments}">
         <td class="col1" data-th-text="${appointment.id}">id</td>
         <td class="col2">
-            <span data-th-text="${#temporals.format(appointment.visitDate(), 'dd-MM HH:mm')}">visit date</span>
+            <span data-th-text="${#temporals.format(appointment.visitDate(), 'dd-MMMM -`     HH:mm')}">visit date</span>
         </td>
         <td class="col3">
             <a data-th-href="@{/manager/clients/{clientId}(clientId=${appointment.clientId})}"

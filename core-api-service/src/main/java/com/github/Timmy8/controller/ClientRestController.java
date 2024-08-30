@@ -1,5 +1,6 @@
 package com.github.Timmy8.controller;
 
+import com.github.Timmy8.controller.exception.PhoneNumberAlreadyExistsException;
 import com.github.Timmy8.controller.payload.UpdateClientPayload;
 import com.github.Timmy8.entity.Client;
 import com.github.Timmy8.service.ClientService;
@@ -35,7 +36,9 @@ public class ClientRestController {
 
         if (bindingResult.hasErrors())
             throw new BindException(bindingResult);
-        else {
+        else if (service.findClientByPhoneNumber(payload.phoneNumber()).isPresent()) {
+            throw new PhoneNumberAlreadyExistsException("api.clients.create.errors.phone_number_exist_error");
+        } else {
             service.updateClient(clientId, payload.name(), payload.surname(), payload.phoneNumber(), payload.description(), payload.blocked());
 
             logger.info("\n--- Update Client ---\n#" + payload + "\n---\n");
