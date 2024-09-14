@@ -12,6 +12,7 @@ Business Manager is a comprehensive solution for managing business processes, in
   - [Pages for managers:](#pages-for-managers)
   - [API endpoints:](#basic-api-url)
 - [How to Contribute](#how-to-contribute)
+- [Contact](#contact)
 
 ## Project Structure
 
@@ -539,3 +540,9 @@ Business Manager is a comprehensive solution for managing business processes, in
 3. Commit your changes (git commit -m 'Add new feature...').
 4. Push to the branch (git push origin feature/my-feature).
 5. Create a Pull Request.
+
+## Contact
+If you have any questions or feedback, feel free to contact me via:
+
+- Email: tima.sniezhkov1@gmail.com
+- LinkedIn: [Tsimafei Sniazhkou](https://www.linkedin.com/in/tsimafei-sniazhkou/)
