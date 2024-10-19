@@ -1,3 +1,4 @@
+# All variables should be changed in .env file!!!
 services:
   # Database service
   postgres_db:

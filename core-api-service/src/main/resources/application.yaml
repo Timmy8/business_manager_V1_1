@@ -15,8 +15,18 @@ spring:
       - manager
   jpa:
     show-sql: true
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /manager-api/v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /manager-api/swagger-ui
+
 server:
   port: 8081
+
 logging:
   level:
     sql: info

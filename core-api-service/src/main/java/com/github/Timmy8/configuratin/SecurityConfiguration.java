@@ -15,7 +15,8 @@ public class SecurityConfiguration {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         return http
                 .authorizeHttpRequests(authorizeHttpRequest -> authorizeHttpRequest
-                        .requestMatchers(HttpMethod.POST, "manager-api/clients").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/manager-api/swagger-ui/**", "/manager-api/v3/api-docs/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/manager-api/clients").permitAll()
                         .anyRequest().hasRole("MANAGER"))
                 .csrf(AbstractHttpConfigurer::disable)
                 .httpBasic(Customizer.withDefaults())
