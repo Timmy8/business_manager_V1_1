@@ -42,3 +42,4 @@ server:
 logging:
   level:
     sql: info
+    org.springframework.boot.actuate: DEBUG
