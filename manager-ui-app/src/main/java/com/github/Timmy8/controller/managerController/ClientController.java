@@ -56,4 +56,19 @@ public class ClientController {
 
         return "redirect:/manager/clients/list";
     }
+
+    @GetMapping("block")
+    public String changeClientBlockStatus(@ModelAttribute(name = "client", binding = false) Client client,
+                               Model model){
+        try{
+            restClient.updateClient(client.id(), client.name(), client.surname(),
+                    client.phoneNumber(), client.description(), !client.blocked());
+
+            return "redirect:/manager/clients/list";
+        } catch (BadRequestException exception){
+            model.addAttribute("errors", exception.getErrors());
+
+            return "redirect:/manager/clients/list";
+        }
+    }
 }

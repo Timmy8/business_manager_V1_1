@@ -46,7 +46,9 @@
         <td data-th-text="${client.description}" class="col5">description</td>
         <td data-th-text="${client.blocked}" class="col6">status</td>
         <td class="col7">
-            <a data-th-href="@{/}"><button>block</button></a>
+            <a data-th-href="@{/manager/clients/{clientId}/block(clientId=${client.id})}">
+                <button data-th-text="${client.blocked ? 'unblock' : 'block'}">Block</button>
+            </a>
         </td>
         <td class="col8">
             <a data-th-href="@{/manager/clients/{clientId}/edit(clientId=${client.id})}"><button>edit</button></a>

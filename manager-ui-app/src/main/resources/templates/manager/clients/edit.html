@@ -35,10 +35,6 @@
         Description:<br>
         <textarea name="description" data-th-text="${payload != null ? payload.description : client.description}"></textarea>
     </label><br>
-    <label>
-        Blocked:<br>
-        <input type="text" name="blocked" data-th-value="${payload != null ? payload.blocked : client.blocked}">
-    </label><br>
 
     <button type="submit">Edit</button>
 </form>

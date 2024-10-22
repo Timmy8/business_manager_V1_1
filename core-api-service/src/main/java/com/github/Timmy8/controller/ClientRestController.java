@@ -33,11 +33,12 @@ public class ClientRestController {
     public  ResponseEntity<?> updateClient(@PathVariable("clientId") Integer clientId,
                                            @RequestBody @Valid UpdateClientPayload payload,
                                            BindingResult bindingResult) throws BindException {
-
         if (bindingResult.hasErrors()) {
-            logger.error("Binding exception:\n" + bindingResult.getAllErrors());
             throw new BindException(bindingResult);
-        } else if (service.findClientByPhoneNumber(payload.phoneNumber()).isPresent()) {
+        }
+
+        var client = service.findClientByPhoneNumber(payload.phoneNumber());
+        if (client.isPresent() && !client.get().getId().equals(clientId)) {
             throw new PhoneNumberAlreadyExistsException("api.clients.create.errors.phone_number_exist_error");
         } else {
             service.updateClient(clientId, payload.name(), payload.surname(), payload.phoneNumber(), payload.description(), payload.blocked());
