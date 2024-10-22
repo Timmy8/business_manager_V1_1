@@ -35,7 +35,7 @@ management:
 
 info:
   app:
-    name: Business manager CORE API
+    name: Business manager - Core API
     description: Backend service implemented in Java to handle business logic and data.
     version: 1.1.0
 
@@ -45,4 +45,3 @@ server:
 logging:
   level:
     sql: info
-    org.springframework.boot.actuate: TRACE

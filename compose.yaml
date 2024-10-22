@@ -19,9 +19,8 @@ services:
   core-api-service:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: /core-api-service/Dockerfile.core-api-service
     container_name: core-api-service
-    entrypoint: ["java", "-jar", "/app/core-api-service.jar"]
     environment:
       SPRING_DATASOURCE_URL: ${POSTGRES_URL}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
@@ -37,15 +36,14 @@ services:
       - frontend
       - backend
     volumes:
-      - core-api-service:/app/logs
+      - core-api-service-logs:/app/logs
 
   # Manager-ui service
   manager-ui-app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: /manager-ui-app/Dockerfile.manager-ui-app
     container_name: manager-ui-app
-    entrypoint: ["java", "-jar", "/app/manager-ui-app.jar"]
     environment:
       CORE_API_SERVICE_URI: ${CORE_API_SERVICE_URI}
       SPRING_SECURITY_USERNAME: ${ADMIN_USERNAME}
