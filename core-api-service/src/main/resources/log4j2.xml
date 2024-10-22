@@ -10,25 +10,16 @@
         <File name="ExceptionHandlerFileAppender" fileName="/app/logs/exception-handler.log">
             <PatternLayout pattern="%d{dd-MM-yy HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
         </File>
-        <File name="SqlFileAppender" fileName="/app/logs/SQL-commands-logger.log">
-            <PatternLayout pattern="%d{dd-MM-yy HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
-        </File>
     </Appenders>
     <Loggers>
-        <Root level="warn" additivity="false">
-            <AppenderRef ref="ConsoleAppender"/>
-        </Root>
         <Logger name="com.github.Timmy8" level="info" additivity="false">
             <AppenderRef ref="CoreApiFileAppender"/>
         </Logger>
         <Logger name="com.github.Timmy8.controller.advice.ControllerExceptionAdvice" level="warn" additivity="false">
             <AppenderRef ref="ExceptionHandlerFileAppender"/>
         </Logger>
-        <Logger name="org.springframework.jdbc.core" level="info" additivity="false">
-            <AppenderRef ref="SqlFileAppender"/>
-        </Logger>
-        <Logger name="org.hibernate" level="info" additivity="false">
-            <AppenderRef ref="SqlFileAppender"/>
-        </Logger>
+        <Root level="warn" additivity="false">
+            <AppenderRef ref="ConsoleAppender"/>
+        </Root>
     </Loggers>
 </Configuration>

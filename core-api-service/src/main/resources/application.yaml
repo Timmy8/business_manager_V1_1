@@ -41,7 +41,3 @@ info:
 
 server:
   port: 8081
-
-logging:
-  level:
-    sql: info
