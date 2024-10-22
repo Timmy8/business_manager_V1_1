@@ -60,6 +60,7 @@ Business Manager is a comprehensive solution for managing business processes, in
 - **log4j2**: As logging system.
 - **lombok**: For development.
 - **Swagger (Springdoc)**: To conveniently provide information about the endpoints of my REST service.
+- **Actuator**: For health check and working with Kubernetes.
 
 ## How to use (1 - UI pages, 2 - API endpoints)
 ## 1. UI Pages:
