@@ -38,7 +38,7 @@ services:
     volumes:
       - core-api-service:/app/logs
 
-      # Manager-ui service
+  # Manager-ui service
   manager-ui-app:
     build:
       context: .

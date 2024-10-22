@@ -17,3 +17,9 @@ business-manager:
         uri: /manager-api/proposals
       appointments:
         uri: /manager-api/appointments
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ${MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE}
