@@ -1,4 +1,4 @@
-FROM maven:3.9.9-eclipse-temurin-21 AS build
+FROM maven:3.8.7-openjdk-17 AS build
 
 WORKDIR /build
 
@@ -7,7 +7,7 @@ COPY pom.xml pom.xml
 
 RUN mvn clean package -DskipTests
 
-FROM eclipse-temurin:21.0.4_7-jre-jammy
+FROM eclipse-temurin:17-jre-jammy
 
 RUN adduser --system run-user && addgroup --system management-application && adduser run-user management-application
 USER run-user

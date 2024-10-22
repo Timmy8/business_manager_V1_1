@@ -21,7 +21,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: core-api-service
-    entrypoint: ["java", "-jar", "./core-api-service.jar"]
+    entrypoint: ["java", "-jar", "/app/core-api-service.jar"]
     environment:
       SPRING_DATASOURCE_URL: ${POSTGRES_URL}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
@@ -45,7 +45,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: manager-ui-app
-    entrypoint: ["java", "-jar", "./manager-ui-app.jar"]
+    entrypoint: ["java", "-jar", "/app/manager-ui-app.jar"]
     environment:
       CORE_API_SERVICE_URI: ${CORE_API_SERVICE_URI}
       SPRING_SECURITY_USERNAME: ${ADMIN_USERNAME}
@@ -66,4 +66,4 @@ networks:
 
 volumes:
   postgres-data:
-  core-api-service:
+  core-api-service-logs:

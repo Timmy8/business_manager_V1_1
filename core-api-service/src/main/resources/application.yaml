@@ -29,6 +29,9 @@ management:
     web:
       exposure:
         include: ${MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE}
+  info:
+    env:
+      enabled: true
 
 info:
   app:
@@ -42,4 +45,4 @@ server:
 logging:
   level:
     sql: info
-    org.springframework.boot.actuate: DEBUG
+    org.springframework.boot.actuate: TRACE

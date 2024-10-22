@@ -1,6 +1,5 @@
 package com.github.Timmy8.controller.advice;
 
-import com.github.Timmy8.controller.ClientsRestController;
 import com.github.Timmy8.controller.exception.PhoneNumberAlreadyExistsException;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.LogManager;
@@ -13,7 +12,6 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import java.time.DateTimeException;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
 import java.util.NoSuchElementException;
@@ -34,7 +32,8 @@ public class ControllerExceptionAdvice {
 
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<?> noSuchElementExceptionHandler(NoSuchElementException ex, Locale locale){
-        logger.warn("NoSuchElementException:\n" + ex.getMessage());
+        logger.warn("NoSuchElementException:\n" +
+                messageSource.getMessage(ex.getMessage(), null, ex.getMessage(), Locale.ENGLISH));
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(messageSource.getMessage(ex.getMessage(), null, ex.getMessage(), locale));
@@ -42,7 +41,8 @@ public class ControllerExceptionAdvice {
 
     @ExceptionHandler(PhoneNumberAlreadyExistsException.class)
     public ResponseEntity<?> PhoneNumberAlreadyExistsExceptionHandler(PhoneNumberAlreadyExistsException ex, Locale locale){
-        logger.warn("PhoneNumberAlreadyExistsException:\n" + ex.getMessage());
+        logger.warn("PhoneNumberAlreadyExistsException:\n" +
+                messageSource.getMessage(ex.getMessage(), null, ex.getMessage(), Locale.ENGLISH));
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(messageSource.getMessage(ex.getMessage(), null, ex.getMessage(), locale));
@@ -51,10 +51,10 @@ public class ControllerExceptionAdvice {
     @ExceptionHandler(DateTimeParseException.class)
     public ResponseEntity<?> dateTimeParseExceptionHandler(DateTimeParseException ex, Locale locale){
         String message = "api.appointment.create.errors.visit_date_parse_error";
-        logger.warn("DateTimeParseException:\n" + ex.getMessage());
+        logger.warn("DateTimeParseException:\n" +
+                messageSource.getMessage(ex.getMessage(), null, ex.getMessage(), Locale.ENGLISH));
         return ResponseEntity
                 .badRequest()
-                .body(messageSource.getMessage(message,
-                        null, message, locale));
+                .body(messageSource.getMessage(message, null, message, locale));
     }
 }
