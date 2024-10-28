@@ -17,6 +17,7 @@ public class SpringSecurityConfiguration {
                         .requestMatchers(HttpMethod.GET,"/registration", "/appointment").permitAll()
                         .requestMatchers(HttpMethod.POST,"/registration", "/appointment").permitAll()
                         .requestMatchers("/styles/**", "/script/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/actuator/**").authenticated()
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .build();
