@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: manager-ui-app-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: manager-ui-app
+  template:
+    metadata:
+      labels:
+        app: manager-ui-app
+    spec:
+      containers:
+        - name: manager-ui-app
+          image: business-manager-manager-ui-app:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: CORE_API_SERVICE_URI
+              value: "http://core-api-service:8081"
+            - name: SPRING_SECURITY_USERNAME
+              value: "admin_user_username"
+            - name: SPRING_SECURITY_PASSWORD
+              value: "admin_user_password"
+            - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
+              value: "health, info"

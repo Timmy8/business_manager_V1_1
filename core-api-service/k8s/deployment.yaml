@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core-api-service-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: core-api-service
+  template:
+    metadata:
+      labels:
+        app: core-api-service
+    spec:
+      containers:
+        - name: core-api-service
+          image: business-manager-core-api-service:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://postgres_db:5432/business_manager"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "database_user"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "database_user_password"
+            - name: SPRING_SECURITY_USERNAME
+              value: "admin_user_username"
+            - name: SPRING_SECURITY_PASSWORD
+              value: "admin_user_password"
+            - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
+              value: "health, info, metrics"
