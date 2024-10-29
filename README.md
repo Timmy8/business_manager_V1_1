@@ -10,7 +10,7 @@ Business Manager is a comprehensive solution for managing business processes, in
   - [Deployment to Kubernetes](#deployment-to-kubernetes)
   - [Run the project without docker](#run-the-project-without-docker)
 - [Technologies Used](#technologies-used)
-- [How to use](#how-to-use)
+- [How to use](#pages-for-customers)
   - [Pages for customers:](#pages-for-customers)
   - [Pages for managers:](#pages-for-managers)
   - [API endpoints:](#basic-api-url)
