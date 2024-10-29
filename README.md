@@ -6,6 +6,9 @@ Business Manager is a comprehensive solution for managing business processes, in
 # Table of Contents
 - [Project Structure](#project-structure)
 - [Installation and Setup](#installation-and-setup)
+  - [Installation using docker](#installation-using-docker)
+  - [Deployment to Kubernetes](#deployment-to-kubernetes)
+  - [Run the project without docker](#run-the-project-without-docker)
 - [Technologies Used](#technologies-used)
 - [How to use](#how-to-use)
   - [Pages for customers:](#pages-for-customers)
@@ -21,17 +24,18 @@ Business Manager is a comprehensive solution for managing business processes, in
 - **telegram-bot-app**: Telegram bot for interacting with users and performing tasks.
 
 ## Installation and Setup
-
 1. **Clone the repository to your device**:
 
    ```bash
    git clone https://github.com/Timmy8/business_manager_V1_1.git
    cd business_manager_V1_1
    
+### Installation using docker: {#installation-using-docker}
+1. **Clone** the repository to your device [see](#installation-and-setup).
 2. **Install dependencies**:
-   > **Note:** The entire installation process takes place using Docker. If you need to run the project yourself, see point 4
+   > **Note:** The entire installation process takes place using Docker. If you need to run the project yourself, see next point!
 
-   Install Docker ([link](https://www.docker.com/))
+   Install Docker [link](https://www.docker.com/)
    
    Follow the instructions in each module's README or Dockerfile to install specific dependencies
 
@@ -41,12 +45,46 @@ Business Manager is a comprehensive solution for managing business processes, in
    Start Docker Compose:
    ```bash
    docker-compose up
-   
-4 **Run the project without docker**:
-   1. **Change** the **application.yml** in each of the modules or configure the environment variables.
-   2. **Delete** docker-compose dependency.
-   3. **Install**: Java version 21+, any SQL database system, any java IDE or command line for run.
-   4. **Run** applications
+   ```
+
+### Deployment to Kubernetes: {#deployment-to-kubernetes}
+   1. **Clone** the repository to your device [see](#installation-and-setup).
+   2. **Install dependencies**:
+      Install **kubectl** command-line tool [link](https://kubernetes.io/docs/tasks/tools/)
+      Install **minikube** (or the one you like) [link](https://minikube.sigs.k8s.io/docs/start/)
+      Configuring container or virtual machine **manager** [link](https://minikube.sigs.k8s.io/docs/drivers/)
+   4. **Start** your Kubernetes cluster.
+   5. **Add** your builds to minikube:
+      ```bash
+      eval $(minikube docker-env)
+      ```
+      ```bash
+      docker build -t business-manager-core-api-service:latest -f core-api-service/Dockerfile.core-api-service
+      docker build -t business-manager-manager-ui-app:latest -f core-api-service/Dockerfile.manager-ui-app
+      ```
+      **or**
+      ```bash
+      Upload the images to the registry and configure imagePullPolicy in the manifests
+      ```
+      
+   6. **Apply** kubernetes manifests:
+      ```bash
+      kubectl apply -f core-api-service/k8s/deployment.yaml
+      kubectl apply -f manager-ui-app/k8s/deployment.yaml
+      kubectl apply -f core-api-service/k8s/service.yaml
+      kubectl apply -f manager-ui-app/k8s/service.yaml
+      kubectl apply -f core-api-service/k8s/postgres/PersistentVolume.yaml
+      kubectl apply -f core-api-service/k8s/postgres/PersistentVolumeClaim.yaml
+      kubectl apply -f core-api-service/k8s/postgres/deployment.yaml
+      kubectl apply -f core-api-service/k8s/postgres/service.yaml
+      ```
+
+### Run the project without docker: {#run-the-project-without-docker}
+   1. **Clone** the repository to your device [see](#installation-and-setup).
+   2. **Change** the **application.yml** in each of the modules or configure the environment variables.
+   3. **Delete** docker-compose dependency.
+   4. **Install**: Java version 21+, any SQL database system, any java IDE or command line for run.
+   5. **Run** applications
 
 ## Technologies Used
 - **Java**: For backend development.
@@ -62,7 +100,7 @@ Business Manager is a comprehensive solution for managing business processes, in
 - **Swagger (Springdoc)**: To conveniently provide information about the endpoints of my REST service.
 - **Actuator**: For health check and working with Kubernetes.
 
-## How to use (1 - UI pages, 2 - API endpoints)
+## How to use (1 - UI pages, 2 - API endpoints) {#how-to-use}
 ## 1. UI Pages:
 ### Pages for customers: 
 ### Authorization method: 
