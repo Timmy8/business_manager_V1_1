@@ -30,7 +30,7 @@ Business Manager is a comprehensive solution for managing business processes, in
    git clone https://github.com/Timmy8/business_manager_V1_1.git
    cd business_manager_V1_1
    
-### Installation using docker: {#installation-using-docker}
+### Installation using docker:
 1. **Clone** the repository to your device [see](#installation-and-setup).
 2. **Install dependencies**:
    > **Note:** The entire installation process takes place using Docker. If you need to run the project yourself, see next point!
@@ -47,7 +47,7 @@ Business Manager is a comprehensive solution for managing business processes, in
    docker-compose up
    ```
 
-### Deployment to Kubernetes: {#deployment-to-kubernetes}
+### Deployment to Kubernetes:
    1. **Clone** the repository to your device [see](#installation-and-setup).
    2. **Install dependencies**:
       Install **kubectl** command-line tool [link](https://kubernetes.io/docs/tasks/tools/)
@@ -79,7 +79,7 @@ Business Manager is a comprehensive solution for managing business processes, in
       kubectl apply -f core-api-service/k8s/postgres/service.yaml
       ```
 
-### Run the project without docker: {#run-the-project-without-docker}
+### Run the project without docker:
    1. **Clone** the repository to your device [see](#installation-and-setup).
    2. **Change** the **application.yml** in each of the modules or configure the environment variables.
    3. **Delete** docker-compose dependency.
