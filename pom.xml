@@ -11,7 +11,7 @@
     <modules>
         <module>core-api-service</module>
         <module>manager-ui-app</module>
-        <module>telegram-bot-app</module>
+        <module>notification-service</module>
     </modules>
 
     <properties>
