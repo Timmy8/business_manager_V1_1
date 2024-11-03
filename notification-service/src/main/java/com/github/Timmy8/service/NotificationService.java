@@ -13,7 +13,7 @@ public class NotificationService {
 
     @PostConstruct
     public void init(){
-        sendNotifications("Hello users!");
+        sendNotifications("Test Notification!");
     }
 
     public void sendNotifications(String message) {
