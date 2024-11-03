@@ -5,16 +5,17 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.apache.commons.lang3.builder.ToStringExclude;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(schema = "manager", name = "proposal")
 public class Proposal {
@@ -39,5 +40,6 @@ public class Proposal {
 
     @ManyToMany(mappedBy = "proposals")
     @JsonIgnore
+    @ToStringExclude
     private List<Appointment> appointments;
 }
