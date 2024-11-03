@@ -1,4 +1,4 @@
-package com.github.Timmy8.service;
+package com.github.Timmy8.producer;
 
 import com.github.Timmy8.entity.TGBotUser;
 import com.github.Timmy8.repository.TelegramRepository;

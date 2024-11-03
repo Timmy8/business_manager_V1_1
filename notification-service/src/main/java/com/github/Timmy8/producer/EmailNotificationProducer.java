@@ -1,8 +1,7 @@
-package com.github.Timmy8.service;
+package com.github.Timmy8.producer;
 
 import com.github.Timmy8.entity.EmailUser;
 import com.github.Timmy8.repository.EmailRepository;
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,5 +1,6 @@
 package com.github.Timmy8.service;
 
+import com.github.Timmy8.producer.NotificationProducer;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
