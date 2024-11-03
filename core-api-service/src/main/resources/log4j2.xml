@@ -12,13 +12,13 @@
         </File>
     </Appenders>
     <Loggers>
-        <Logger name="com.github.Timmy8" level="info" additivity="false">
+        <Logger name="com.github.Timmy8" level="warn" additivity="false">
             <AppenderRef ref="CoreApiFileAppender"/>
         </Logger>
         <Logger name="com.github.Timmy8.controller.advice.ControllerExceptionAdvice" level="warn" additivity="false">
             <AppenderRef ref="ExceptionHandlerFileAppender"/>
         </Logger>
-        <Root level="warn" additivity="false">
+        <Root level="info" additivity="false">
             <AppenderRef ref="ConsoleAppender"/>
         </Root>
     </Loggers>
