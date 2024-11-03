@@ -14,7 +14,7 @@ import java.util.List;
 public class NotificationService {
     private final List<NotificationProducer> producers;
 
-    @KafkaListener(topics = "core_api_notifications", groupId = "notification-group")
+    @KafkaListener(topics = "core_api_notifications_topic", groupId = "notification-group")
     public void listen(String message){
         if (message.trim().isEmpty())
             log.warn("Trying to send empty message.");

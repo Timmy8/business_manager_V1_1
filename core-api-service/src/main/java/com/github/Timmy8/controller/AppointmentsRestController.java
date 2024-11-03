@@ -3,6 +3,7 @@ package com.github.Timmy8.controller;
 import com.github.Timmy8.controller.payload.NewAppointmentPayload;
 import com.github.Timmy8.entity.Appointment;
 import com.github.Timmy8.service.AppointmentService;
+import com.github.Timmy8.service.NotificationProducer;
 import com.github.Timmy8.service.ProposalService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ public class AppointmentsRestController {
     private final Logger logger = LogManager.getLogger(AppointmentsRestController.class.getName());
     private final AppointmentService appointmentService;
     private final ProposalService proposalService;
+    private final NotificationProducer producer;
 
     @GetMapping
     public List<Appointment> findAllProposals(){
@@ -47,6 +49,7 @@ public class AppointmentsRestController {
             );
 
             logger.info("\n--- New Appointment added ---\n#" + appointment + "\n---\n");
+            producer.sendNotification("New Appointment added: " + appointment);
             return ResponseEntity
                     .created(URI.create("manager-api/proposals/" + appointment.getId()))
                     .body(appointment);

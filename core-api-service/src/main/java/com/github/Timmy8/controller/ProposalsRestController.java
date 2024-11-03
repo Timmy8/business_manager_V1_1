@@ -2,6 +2,7 @@ package com.github.Timmy8.controller;
 
 import com.github.Timmy8.controller.payload.NewProposalPayload;
 import com.github.Timmy8.entity.Proposal;
+import com.github.Timmy8.service.NotificationProducer;
 import com.github.Timmy8.service.ProposalService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import java.util.List;
 public class ProposalsRestController {
     private final Logger logger = LogManager.getLogger(ProposalsRestController.class.getName());
     private final ProposalService service;
+    private final NotificationProducer producer;
 
     @GetMapping
     public List<Proposal> findAllProposals(){
@@ -36,6 +38,7 @@ public class ProposalsRestController {
             Proposal proposal = service.createProposal(payload.name(), payload.description(), payload.price());
 
             logger.info("\n--- New Proposal added ---\n" + proposal + "\n---\n");
+            producer.sendNotification("New Proposal added: " + proposal);
             return ResponseEntity
                     .created(URI.create("manager-api/proposals/" + proposal.getId()))
                     .body(proposal);

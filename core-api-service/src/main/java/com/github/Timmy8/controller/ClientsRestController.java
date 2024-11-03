@@ -4,6 +4,7 @@ import com.github.Timmy8.controller.exception.PhoneNumberAlreadyExistsException;
 import com.github.Timmy8.controller.payload.NewClientPayload;
 import com.github.Timmy8.entity.Client;
 import com.github.Timmy8.service.ClientService;
+import com.github.Timmy8.service.NotificationProducer;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.LogManager;
@@ -24,6 +25,7 @@ import java.util.NoSuchElementException;
 public class ClientsRestController {
     private final Logger logger = LogManager.getLogger(ClientsRestController.class.getName());
     private final ClientService service;
+    private final NotificationProducer producer;
 
     @GetMapping
     public List<Client> getAllClients(){
@@ -41,8 +43,8 @@ public class ClientsRestController {
         } else {
             Client client = service.createClient(payload.name(), payload.surname(), payload.phoneNumber(), payload.description());
 
-            logger.info("\n--- New Client added ---\n" + client + "\n---\n");
-
+            logger.info("\n--- New client added ---\n" + client + "\n---\n");
+            producer.sendNotification("New client added:" + client);
             return ResponseEntity
                     .created(URI.create("/manager-api/clients/" + client.getId()))
                     .contentType(MediaType.APPLICATION_JSON)
