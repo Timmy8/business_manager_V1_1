@@ -14,7 +14,7 @@ spring:
       - public
       - manager
   jpa:
-    show-sql: true
+    show-sql: false
   kafka:
     bootstrap-servers: ${KAFKA_DATASOURCE_URL}
     producer:

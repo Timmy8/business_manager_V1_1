@@ -70,12 +70,11 @@ services:
       EMAIL_USERNAME: ${EMAIL_USERNAME}
       TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
       MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: ${NOTIFICATION_MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE}
-    depends_on:
-      - core-api-service
     ports:
-      - "8080:8080"
+      - "8082:8082"
     networks:
-      - frontend
+      - backend
+
   # Zookeeper
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
