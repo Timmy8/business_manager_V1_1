@@ -2,6 +2,7 @@ package com.github.Timmy8.producer;
 
 import com.github.Timmy8.entity.TGBotUser;
 import com.github.Timmy8.repository.TelegramRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.client.okhttp.OkHttpTelegramClient;
@@ -14,6 +15,7 @@ import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.generics.TelegramClient;
 
+@Slf4j
 @Component
 public class TelegramNotificationProducer implements SpringLongPollingBot,
         LongPollingSingleThreadUpdateConsumer, NotificationProducer {
@@ -36,7 +38,8 @@ public class TelegramNotificationProducer implements SpringLongPollingBot,
                 String userTag = user.getUserName();
 
                 if (!repository.existsByChatId(chatId)) {
-                    repository.save(new TGBotUser(chatId, userTag));
+                     var newUser = repository.save(new TGBotUser(chatId, userTag));
+                     log.info("New user added: {} - {}", userTag, newUser.getId());
                 }
 
                 sendMessage(chatId, "Dear, " + user.getFirstName() + "\nWelcome to Notification Bot!");
@@ -45,6 +48,7 @@ public class TelegramNotificationProducer implements SpringLongPollingBot,
 
     @Override
     public void sendNotification(String message) {
+        log.info("Trying to send telegram notification to all users.\nMessage: {}", message);
         repository.findAll().forEach((TGBotUser -> sendMessage(TGBotUser.getChatId(), message)));
     }
 
@@ -65,8 +69,9 @@ public class TelegramNotificationProducer implements SpringLongPollingBot,
                 .build();
         try {
             telegramClient.execute(message);
-        } catch (TelegramApiException e) {
-            System.err.println(e.getMessage());
+        } catch (TelegramApiException ex) {
+            log.error("Failed to send message to chat ID {}. Error: {}", chatId, ex.getMessage(), ex);
+            throw new RuntimeException("Unable to send message via Telegram API", ex);
         }
     }
 }
