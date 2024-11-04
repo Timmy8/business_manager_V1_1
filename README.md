@@ -18,6 +18,7 @@ Built for integration and efficiency, it empowers teams to manage operations sea
 - [Contact](#contact)
 
 ## Project Structure
+### Main Services
 
 - **core-api-service**: Core backend service that handles the main business logic, processes user requests, and manages data storage and retrieval.
   It interacts with other services and publishes events to Kafka for downstream processing.
