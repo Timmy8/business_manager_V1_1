@@ -25,6 +25,15 @@ Built for integration and efficiency, it empowers teams to manage operations sea
   and perform administrative tasks. It communicates with backend services to fetch and update data in real time.
 - **notification-service**:  A dedicated microservice for sending real-time notifications to users through multiple channels, such as Telegram and email,
   based on events triggered in other services. It listens to specific Kafka topics to process and distribute notifications efficiently.
+  
+### Other Services
+  
+- **postgres-db**: A robust and lightweight PostgreSQL database using postgres:16-alpine, which provides reliable storage and retrieval of business-critical data for all services.
+  It supports complex queries and ensures data integrity, serving as the primary data backbone for the application.
+- **zookeeper**: A centralized coordination service that manages Kafka brokers, facilitates distributed configurations, and ensures synchronization across services.
+  Zookeeper is crucial for maintaining the stability and consistency of Kafka’s event streaming within the application.
+- **kafka**: A powerful event streaming platform that enables efficient communication between microservices by publishing and subscribing to events.
+  Kafka processes and distributes messages across services in real-time, allowing core services to trigger notifications, synchronize states, and maintain an event-driven architecture.
 
 ## Installation and Setup
 1. **Clone the repository to your device**:
