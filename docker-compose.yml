@@ -74,6 +74,8 @@ services:
       - "8082:8082"
     networks:
       - backend
+    volumes:
+      - notification-service-logs:/app/logs
 
   # Zookeeper
   zookeeper:
@@ -100,8 +102,8 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_NUM_PARTITIONS: 3
-      KAFKA_DEFAULT_REPLICATION_FACTOR: 2
-      KAFKA_MIN_INSYNC_REPLICAS: 2
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 1
+      KAFKA_MIN_INSYNC_REPLICAS: 1
       # Security settings
       KAFKA_SSL_ENDPOINT_IDENTIFICATION_ALGORITHM: https
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: false
@@ -135,3 +137,4 @@ volumes:
   postgres-data:
   kafka-data:
   core-api-service-logs:
+  notification-service-logs:
