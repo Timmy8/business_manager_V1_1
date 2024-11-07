@@ -37,7 +37,7 @@ public class ProposalRestController {
         else {
             service.updateProposal(proposalId, payload.name(), payload.description(), payload.price());
 
-            logger.info("\n--- Update Proposal ---\n#" + payload + "\n---\n");
+            logger.info("\n--- Update Proposal ---\n#{}\n---\n", payload);
 
             return ResponseEntity.noContent().build();
         }

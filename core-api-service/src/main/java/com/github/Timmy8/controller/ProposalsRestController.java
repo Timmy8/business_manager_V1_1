@@ -37,7 +37,7 @@ public class ProposalsRestController {
         else {
             Proposal proposal = service.createProposal(payload.name(), payload.description(), payload.price());
 
-            logger.info("\n--- New Proposal added ---\n" + proposal + "\n---\n");
+            logger.info("\n--- New Proposal added ---\n{}\n---\n", proposal);
             producer.sendNotification("New Proposal added: " + proposal);
             return ResponseEntity
                     .created(URI.create("manager-api/proposals/" + proposal.getId()))

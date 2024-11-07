@@ -50,7 +50,7 @@ public class AppointmentRestController {
                     )
             );
 
-            logger.info("\n--- Update Appointment ---\n" + payload + "\n---\n");
+            logger.info("\n--- Update Appointment ---\n{}\n---\n", payload);
 
             return ResponseEntity.noContent().build();
         }
@@ -60,7 +60,7 @@ public class AppointmentRestController {
     public ResponseEntity<?> deleteAppointment(@PathVariable("appointmentId") Integer appointmentId){
         appointmentService.deleteAppointment(appointmentId);
 
-        logger.info("\n--- Delete Appointment ---\n#" + appointmentId + "\n---\n");
+        logger.info("\n--- Delete Appointment ---\n#{}\n---\n", appointmentId);
 
         return ResponseEntity.noContent().build();
     }

@@ -43,7 +43,7 @@ public class ClientsRestController {
         } else {
             Client client = service.createClient(payload.name(), payload.surname(), payload.phoneNumber(), payload.description());
 
-            logger.info("\n--- New client added ---\n" + client + "\n---\n");
+            logger.info("\n--- New client added ---\n{}\n---\n", client);
             producer.sendNotification("New client added:" + client);
             return ResponseEntity
                     .created(URI.create("/manager-api/clients/" + client.getId()))

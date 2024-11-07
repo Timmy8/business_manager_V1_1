@@ -48,7 +48,7 @@ public class AppointmentsRestController {
                     )
             );
 
-            logger.info("\n--- New Appointment added ---\n#" + appointment + "\n---\n");
+            logger.info("\n--- New Appointment added ---\n#{}\n---\n", appointment);
             producer.sendNotification("New Appointment added: " + appointment);
             return ResponseEntity
                     .created(URI.create("manager-api/proposals/" + appointment.getId()))

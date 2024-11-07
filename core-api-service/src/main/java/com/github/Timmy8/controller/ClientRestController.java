@@ -20,7 +20,7 @@ import java.util.NoSuchElementException;
 @RestController
 @RequestMapping("manager-api/clients/{clientId:\\d+}")
 public class ClientRestController {
-    private final Logger logger = LogManager.getLogger(ClientsRestController.class.getName());
+    private final Logger logger = LogManager.getLogger(ClientRestController.class.getName());
     private final ClientService service;
 
     @GetMapping
@@ -43,7 +43,7 @@ public class ClientRestController {
         } else {
             service.updateClient(clientId, payload.name(), payload.surname(), payload.phoneNumber(), payload.description(), payload.blocked());
 
-            logger.info("\n--- Update Client ---\n#" + payload + "\n---\n");
+            logger.info("\n--- Update Client ---\n#{}\n---\n", payload);
 
             return ResponseEntity.noContent().build();
         }
@@ -53,7 +53,7 @@ public class ClientRestController {
     public ResponseEntity<Void> deleteClient(@PathVariable("clientId") Integer clientId){
         service.deleteClient(clientId);
 
-        logger.info("\n--- Delete Client ---\n#" + clientId + "\n---\n");
+        logger.info("\n--- Delete Client ---\n#{}\n---\n", clientId);
 
         return ResponseEntity.noContent().build();
     }
