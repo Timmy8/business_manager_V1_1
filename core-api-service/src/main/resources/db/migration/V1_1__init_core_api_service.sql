@@ -1,6 +1,4 @@
-CREATE SCHEMA IF NOT EXISTS manager;
-
-CREATE TABLE IF NOT EXISTS manager.client
+CREATE TABLE IF NOT EXISTS client
 (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL CHECK (LENGTH(TRIM(name)) > 1),
@@ -10,7 +8,7 @@ CREATE TABLE IF NOT EXISTS manager.client
     blocked BOOLEAN
 );
 
-CREATE TABLE IF NOT EXISTS manager.proposal
+CREATE TABLE IF NOT EXISTS proposal
 (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL CHECK (LENGTH(TRIM(name)) > 1),
@@ -18,16 +16,16 @@ CREATE TABLE IF NOT EXISTS manager.proposal
     price DECIMAL(10,2) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS manager.appointment
+CREATE TABLE IF NOT EXISTS appointment
 (
     id SERIAL PRIMARY KEY,
     visit_date TIMESTAMP NOT NULL,
-    client_id int REFERENCES manager.client(id)
+    client_id int REFERENCES client(id)
 );
 
-CREATE TABLE IF NOT EXISTS manager.appointment_proposals
+CREATE TABLE IF NOT EXISTS appointment_proposals
 (
     PRIMARY KEY (appointment_id, proposal_id),
-    appointment_id INT REFERENCES manager.appointment(id),
-    proposal_id INT REFERENCES manager.proposal(id)
+    appointment_id INT REFERENCES appointment(id),
+    proposal_id INT REFERENCES proposal(id)
 );

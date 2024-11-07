@@ -12,7 +12,7 @@ import lombok.*;
 @Setter
 @ToString
 @Entity
-@Table(schema = "manager", name = "client")
+@Table(schema = "core_api_service", name = "client")
 public class Client {
     @Column(name = "id")
     @Id

@@ -22,12 +22,12 @@ services:
       dockerfile: /core-api-service/Dockerfile.core-api-service
     container_name: core-api-service
     environment:
-      KAFKA_DATASOURCE_URL: ${KAFKA_DATASOURCE_URL}
       SPRING_DATASOURCE_URL: ${POSTGRES_URL}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
       SPRING_SECURITY_USERNAME: ${ADMIN_USERNAME}
       SPRING_SECURITY_PASSWORD: ${ADMIN_PASSWORD}
+      KAFKA_DATASOURCE_URL: ${KAFKA_DATASOURCE_URL}
       MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: ${CORE_API_MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE}
     depends_on:
       - postgres_db
@@ -64,12 +64,17 @@ services:
       dockerfile: /notification-service/Dockerfile.notification-service
     container_name: notification-service
     environment:
+      SPRING_DATASOURCE_URL: ${POSTGRES_URL}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
       KAFKA_DATASOURCE_URL: ${KAFKA_DATASOURCE_URL}
       KAFKA_GROUP_ID: ${KAFKA_GROUP_ID}
       EMAIL_PASSWORD: ${EMAIL_PASSWORD}
       EMAIL_USERNAME: ${EMAIL_USERNAME}
       TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
       MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: ${NOTIFICATION_MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE}
+    depends_on:
+      - postgres_db
     ports:
       - "8082:8082"
     networks:

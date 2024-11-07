@@ -11,7 +11,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(schema = "manager", name = "email_user")
+@Table(schema = "notification_service", name = "email_user")
 public class EmailUser {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

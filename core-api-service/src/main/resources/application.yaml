@@ -10,9 +10,7 @@ spring:
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
   flyway:
-    schemas:
-      - public
-      - manager
+    schemas: core_api_service
   jpa:
     show-sql: false
   kafka:

@@ -17,7 +17,7 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-@Table(schema = "manager", name = "proposal")
+@Table(schema = "core_api_service", name = "proposal")
 public class Proposal {
     @Column(name = "id")
     @Id
