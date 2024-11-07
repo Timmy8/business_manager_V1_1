@@ -12,6 +12,5 @@ public class NotificationProducer {
 
     public void sendNotification(String message){
         kafkaTemplate.send(TOPIC, message);
-        System.err.println("Notification sended!");
     }
 }
