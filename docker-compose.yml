@@ -22,12 +22,16 @@ services:
       dockerfile: /core-api-service/Dockerfile.core-api-service
     container_name: core-api-service
     environment:
+      # Datasource settings
       SPRING_DATASOURCE_URL: ${POSTGRES_URL}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      # Security settings
       SPRING_SECURITY_USERNAME: ${ADMIN_USERNAME}
       SPRING_SECURITY_PASSWORD: ${ADMIN_PASSWORD}
+      # Kafka settings
       KAFKA_DATASOURCE_URL: ${KAFKA_DATASOURCE_URL}
+      # Actuator settings
       MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: ${CORE_API_MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE}
     depends_on:
       - postgres_db
@@ -46,9 +50,12 @@ services:
       dockerfile: /manager-ui-app/Dockerfile.manager-ui-app
     container_name: manager-ui-app
     environment:
+      # Connection settings
       CORE_API_SERVICE_URI: ${CORE_API_SERVICE_URI}
+      # Security settings
       SPRING_SECURITY_USERNAME: ${ADMIN_USERNAME}
       SPRING_SECURITY_PASSWORD: ${ADMIN_PASSWORD}
+      # Actuator settings
       MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: ${MANAGER_UI_MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE}
     depends_on:
       - core-api-service
@@ -64,14 +71,19 @@ services:
       dockerfile: /notification-service/Dockerfile.notification-service
     container_name: notification-service
     environment:
+      # Datasource settings
       SPRING_DATASOURCE_URL: ${POSTGRES_URL}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      # Kafka settings
       KAFKA_DATASOURCE_URL: ${KAFKA_DATASOURCE_URL}
       KAFKA_GROUP_ID: ${KAFKA_GROUP_ID}
+      # Email producer settings
       EMAIL_PASSWORD: ${EMAIL_PASSWORD}
       EMAIL_USERNAME: ${EMAIL_USERNAME}
+      # Telegram producer settings
       TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      # Actuator settings
       MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: ${NOTIFICATION_MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE}
     depends_on:
       - postgres_db
