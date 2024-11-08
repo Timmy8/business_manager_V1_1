@@ -3,7 +3,10 @@ kind: ConfigMap
 metadata:
   name: manager-ui-app-config
 data:
+  # Connection settings
   CORE_API_SERVICE_URI: "http://core-api-service:8081"
+  # Security settings
   SPRING_SECURITY_USERNAME: "admin_user_username"
   SPRING_SECURITY_PASSWORD: "admin_user_password"
+  # Actuator settings
   MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "health, info"

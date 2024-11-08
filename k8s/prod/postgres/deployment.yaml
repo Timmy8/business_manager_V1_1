@@ -18,16 +18,9 @@ spec:
           image: postgres:16-alpine
           ports:
             - containerPort: 5432
-          env:
-            - name: POSTGRES_DB
-              value: "business_manager"
-            - name: POSTGRES_USER
-              value: "database_user"
-            - name: POSTGRES_PASSWORD
-              value: "database_user_password"
-          volumeMounts:
-            - name: postgres-data
-              mountPath: /var/lib/postgresql/data
+          envFrom:
+            - configMapRef:
+                name: postgres-config
       volumes:
         - name: postgres-data
           persistentVolumeClaim:

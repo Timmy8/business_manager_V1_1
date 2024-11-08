@@ -18,12 +18,6 @@ spec:
           imagePullPolicy: Never
           ports:
             - containerPort: 8080
-          env:
-            - name: CORE_API_SERVICE_URI
-              value: "http://core-api-service:8081"
-            - name: SPRING_SECURITY_USERNAME
-              value: "admin_user_username"
-            - name: SPRING_SECURITY_PASSWORD
-              value: "admin_user_password"
-            - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
-              value: "health, info"
+          envFrom:
+            - configMapRef:
+                name: manager-ui-app-config

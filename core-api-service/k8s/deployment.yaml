@@ -18,16 +18,6 @@ spec:
           imagePullPolicy: Never
           ports:
             - containerPort: 8081
-          env:
-            - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://postgres:5432/business_manager"
-            - name: SPRING_DATASOURCE_USERNAME
-              value: "database_user"
-            - name: SPRING_DATASOURCE_PASSWORD
-              value: "database_user_password"
-            - name: SPRING_SECURITY_USERNAME
-              value: "admin_user_username"
-            - name: SPRING_SECURITY_PASSWORD
-              value: "admin_user_password"
-            - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
-              value: "health, info, metrics"
+          envFrom:
+            - configMapRef:
+                name: core-api-service-config

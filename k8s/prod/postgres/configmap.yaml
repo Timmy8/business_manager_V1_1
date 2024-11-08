@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  namespace: default
+data:
+  POSTGRES_DB: "business_manager"
+  POSTGRES_USER: "database_user"
+  POSTGRES_PASSWORD: "database_user_password"

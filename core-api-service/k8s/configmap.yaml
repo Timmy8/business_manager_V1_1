@@ -3,9 +3,14 @@ kind: ConfigMap
 metadata:
   name: core-api-service-config
 data:
-  SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres_db:5432/business_manager"
+  # Datasource settings
+  SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/business_manager"
   SPRING_DATASOURCE_USERNAME: "database_user"
   SPRING_DATASOURCE_PASSWORD: "database_user_password"
+  # Security settings
   SPRING_SECURITY_USERNAME: "admin_user_username"
   SPRING_SECURITY_PASSWORD: "admin_user_password"
+  # Kafka settings
+  KAFKA_DATASOURCE_URL: "kafka-cluster.kafka.svc.cluster.local:9092"
+  # Actuator settings
   MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "health, info, metrics"
