@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://postgres_db:5432/business_manager}
+    username: ${SPRING_DATASOURCE_USERNAME:database_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:database_user_password}
   flyway:
     schemas: notification_service
     enabled: true
@@ -12,32 +12,32 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: ${EMAIL_USERNAME}
-    password: ${EMAIL_PASSWORD}
+    username: ${EMAIL_USERNAME:my.user@example.com}
+    password: ${EMAIL_PASSWORD:email_password}
     properties:
       mail.smtp.auth: true
       mail.smtp.starttls.enable: true
     notification:
       message:
         subject: New notification from business manager
-        from: business.manager.test.app@gmail.com
+        from: my.user@example.com
   kafka:
-    bootstrap-servers: ${KAFKA_DATASOURCE_URL}
+    bootstrap-servers: ${KAFKA_DATASOURCE_URL:kafka:9092}
     consumer:
-      group-id: ${KAFKA_GROUP_ID}
+      group-id: ${KAFKA_GROUP_ID:notification-group}
       auto-offset-reset: latest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
 telegram:
   bot:
-    token: ${TELEGRAM_BOT_TOKEN}
+    token: ${TELEGRAM_BOT_TOKEN:tg_bot_token}
 
 management:
   endpoints:
     web:
       exposure:
-        include: ${MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE}
+        include: ${MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE:health,info}
   info:
     env:
       enabled: true
