@@ -15,7 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(schema = "core_api_service", name = "proposal")
 public class Proposal {
@@ -40,6 +39,15 @@ public class Proposal {
 
     @ManyToMany(mappedBy = "proposals")
     @JsonIgnore
-    @ToStringExclude
     private List<Appointment> appointments;
+
+    @Override
+    public String toString() {
+        return "Proposal(" +
+                "Id=" + Id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ')';
+    }
 }
