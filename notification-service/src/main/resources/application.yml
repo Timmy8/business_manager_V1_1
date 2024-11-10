@@ -25,9 +25,14 @@ spring:
     bootstrap-servers: ${KAFKA_DATASOURCE_URL:kafka:9092}
     consumer:
       group-id: ${KAFKA_GROUP_ID:notification-group}
-      auto-offset-reset: latest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      ey-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-offset-reset: earliest
+      max-poll-records: 100
+      enable-auto-commit: true
+      max-poll-interval: 30000
+      retry:
+        backoff-ms: 25000
 
 telegram:
   bot:
