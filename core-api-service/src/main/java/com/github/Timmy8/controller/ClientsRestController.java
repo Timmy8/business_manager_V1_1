@@ -56,8 +56,13 @@ public class ClientsRestController {
     }
 
     @GetMapping("/{phoneNumber:^\\+375\\d{9}$}")
-    public Client findClient(@PathVariable("phoneNumber") String phoneNumber){
-        return service.findClientByPhoneNumber(phoneNumber)
+    public ResponseEntity<Client> findClient(@PathVariable("phoneNumber") String phoneNumber){
+        Client client=  service.findClientByPhoneNumber(phoneNumber)
                 .orElseThrow(() -> new NoSuchElementException("api.clients.create.errors.client_not_found"));
+
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(client);
     }
 }
