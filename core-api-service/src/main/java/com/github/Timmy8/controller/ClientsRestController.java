@@ -28,8 +28,11 @@ public class ClientsRestController {
     private final NotificationProducer producer;
 
     @GetMapping
-    public List<Client> getAllClients(){
-        return service.findAllClients();
+    public ResponseEntity<List<Client>> getAllClients(){
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(service.findAllClients());
     }
 
     @PostMapping

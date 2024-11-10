@@ -10,6 +10,9 @@ spring:
     username: ${SPRING_DATASOURCE_USERNAME:database_user}
     password: ${SPRING_DATASOURCE_PASSWORD:database_user_password}
   flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baselineOnMigrate: false
     schemas: core_api_service
   jpa:
     show-sql: false
