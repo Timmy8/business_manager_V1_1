@@ -1,7 +1,7 @@
 # Business Manager V1.1
 
-Business Manager is a comprehensive solution for managing business processes, including an API service, a user interface, and a Telegram bot for integration.
- > **Note:** Telegram bot is not available in the open version
+**Business Manager** - is an all-in-one solution designed to streamline business processes with an intuitive API service, an interactive user interface, and a versatile notification service. 
+Built for integration and efficiency, it empowers teams to manage operations seamlessly, stay connected through timely alerts, and optimize workflows across various functions.
 
 # Table of Contents
 - [Project Structure](#project-structure)
@@ -18,10 +18,23 @@ Business Manager is a comprehensive solution for managing business processes, in
 - [Contact](#contact)
 
 ## Project Structure
+### Main Services
 
-- **core-api-service**: Backend service implemented in Java to handle business logic and data.
-- **manager-ui-app**: Web application for managing users and data.
-- **telegram-bot-app**: Telegram bot for interacting with users and performing tasks.
+- **core-api-service**: Core backend service that handles the main business logic, processes user requests, and manages data storage and retrieval.
+  It interacts with other services and publishes events to Kafka for downstream processing.
+- **manager-ui-app**: A user-friendly web interface for managing and visualizing data, allowing users to interact with the system, view information,
+  and perform administrative tasks. It communicates with backend services to fetch and update data in real time.
+- **notification-service**:  A dedicated microservice for sending real-time notifications to users through multiple channels, such as Telegram and email,
+  based on events triggered in other services. It listens to specific Kafka topics to process and distribute notifications efficiently.
+  
+### Other Services
+  
+- **postgres-db**: A robust and lightweight PostgreSQL database using postgres:16-alpine, which provides reliable storage and retrieval of business-critical data for all services.
+  It supports complex queries and ensures data integrity, serving as the primary data backbone for the application.
+- **zookeeper**: A centralized coordination service that manages Kafka brokers, facilitates distributed configurations, and ensures synchronization across services.
+  Zookeeper is crucial for maintaining the stability and consistency of Kafka’s event streaming within the application.
+- **kafka**: A powerful event streaming platform that enables efficient communication between microservices by publishing and subscribing to events.
+  Kafka processes and distributes messages across services in real-time, allowing core services to trigger notifications, synchronize states, and maintain an event-driven architecture.
 
 ## Installation and Setup
 1. **Clone the repository to your device**:
@@ -48,6 +61,8 @@ Business Manager is a comprehensive solution for managing business processes, in
    ```
 
 ### Deployment to Kubernetes:
+> The notification service is not included in the kubernetes deployment!
+
    1. **Clone** the repository to your device [see](#installation-and-setup).
    2. **Install dependencies**:
       Install **kubectl** command-line tool [link](https://kubernetes.io/docs/tasks/tools/)
@@ -95,10 +110,13 @@ Business Manager is a comprehensive solution for managing business processes, in
 - **Hibername**: For database connection and usage.
 - **Flyway**: For database version controle.
 - **Spring boot validation**: As validation sysyem.
-- **log4j2**: As logging system.
+- **Slf4j** and **Log4j2**: As logging system.
+- **Kafka**: As messages borker.
 - **lombok**: For development.
 - **Swagger (Springdoc)**: To conveniently provide information about the endpoints of my REST service.
 - **Actuator**: For health check and working with Kubernetes.
+- **Telegram API**: For telegram notifications.
+- **Spring starter mail**: For email notifications.
 
 ## How to use (1 - UI pages, 2 - API endpoints) {#how-to-use}
 ## 1. UI Pages:
