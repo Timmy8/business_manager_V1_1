@@ -84,17 +84,18 @@ class ClientsRestControllerTest {
         verify(service, times(1)).findClientByPhoneNumber(any());
         verifyNoMoreInteractions(service);
         verify(producer, times(1)).sendNotification(any());
+        verifyNoMoreInteractions(producer);
     }
 
     @Test
-    void testCreateClient_withValidUserAndValidDataButPhoneNumberExist() throws Exception {
+    void testCreateClient_withValidUserAndValidPayloadButPhoneNumberExist() throws Exception {
         // Arrange
         Client client = EntityFactory.getClient();
         NewClientPayload payload = new NewClientPayload(client.getName(), client.getSurname(), client.getPhoneNumber(), client.getDescription());
         String jsonContent = new ObjectMapper().writeValueAsString(payload);
 
         // Act
-        when(service.findClientByPhoneNumber(client.getPhoneNumber()))
+        when(service.findClientByPhoneNumber(payload.phoneNumber()))
                 .thenReturn(Optional.of(client));
 
         // Assert
@@ -111,7 +112,7 @@ class ClientsRestControllerTest {
     }
 
     @Test
-    void testCreateClient_withValidUserAndInvalidData() throws Exception {
+    void testCreateClient_withValidUserAndInvalidPayload() throws Exception {
         // Arrange
         Client client = EntityFactory.getClient();
         NewClientPayload payload = new NewClientPayload("", "", "", "");
