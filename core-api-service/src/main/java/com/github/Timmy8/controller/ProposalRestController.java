@@ -18,7 +18,7 @@ import java.util.NoSuchElementException;
 @RestController
 @RequestMapping("manager-api/proposals/{proposalId:\\d+}")
 public class ProposalRestController {
-    private final Logger logger = LogManager.getLogger(ProposalsRestController.class.getName());
+    private final Logger logger = LogManager.getLogger(ProposalRestController.class.getName());
     private final ProposalService service;
 
     @GetMapping
