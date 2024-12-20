@@ -1,10 +1,11 @@
-package com.github.Timmy8.controller;
+package com.github.Timmy8.controller.factory;
 
-import com.github.Timmy8.controller.payload.NewClientPayload;
+import com.github.Timmy8.entity.Appointment;
 import com.github.Timmy8.entity.Client;
 import com.github.Timmy8.entity.Proposal;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class EntityFactory {
@@ -26,5 +27,15 @@ public class EntityFactory {
     }
     public static Proposal getProposal(){
         return getProposalsList().getFirst();
+    }
+
+    public static List<Appointment> getAppointmentsList(){
+
+        Appointment appointment1 = new Appointment(1, LocalDateTime.of(2024, 11, 10, 10, 30), 1, List.of(getProposal()));
+        Appointment appointment2 = new Appointment(2, LocalDateTime.of(2024, 11, 9, 12, 35), 2, List.of(getProposal()));
+        return List.of(appointment1, appointment2);
+    }
+    public static Appointment getAppointment(){
+        return getAppointmentsList().getFirst();
     }
 }

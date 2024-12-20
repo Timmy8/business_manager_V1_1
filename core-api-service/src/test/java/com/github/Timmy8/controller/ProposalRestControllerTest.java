@@ -1,9 +1,8 @@
 package com.github.Timmy8.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.Timmy8.controller.payload.UpdateClientPayload;
+import com.github.Timmy8.controller.factory.EntityFactory;
 import com.github.Timmy8.controller.payload.UpdateProposalPayload;
-import com.github.Timmy8.entity.Client;
 import com.github.Timmy8.entity.Proposal;
 import com.github.Timmy8.service.ProposalService;
 import org.junit.jupiter.api.Test;
@@ -17,9 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;

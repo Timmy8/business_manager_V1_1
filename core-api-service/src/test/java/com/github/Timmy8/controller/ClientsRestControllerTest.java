@@ -1,6 +1,7 @@
 package com.github.Timmy8.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Timmy8.controller.factory.EntityFactory;
 import com.github.Timmy8.controller.payload.NewClientPayload;
 import com.github.Timmy8.entity.Client;
 import com.github.Timmy8.service.ClientService;

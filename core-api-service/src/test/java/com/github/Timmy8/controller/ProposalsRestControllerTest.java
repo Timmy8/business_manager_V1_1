@@ -1,14 +1,12 @@
 package com.github.Timmy8.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.Timmy8.controller.payload.NewClientPayload;
+import com.github.Timmy8.controller.factory.EntityFactory;
 import com.github.Timmy8.controller.payload.NewProposalPayload;
-import com.github.Timmy8.entity.Client;
 import com.github.Timmy8.entity.Proposal;
 import com.github.Timmy8.service.NotificationProducer;
 import com.github.Timmy8.service.ProposalService;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -18,9 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import java.util.List;
-import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.verifyNoInteractions;
