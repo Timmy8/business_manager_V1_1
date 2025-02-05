@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: ${SPRING_PROFILES_ACTIVE:prod}
+    active: ${SPRING_PROFILES_ACTIVE:dev}
   flyway:
     enabled: true
     locations: classpath:db/migration
@@ -8,10 +8,17 @@ spring:
     baselineOnMigrate: false
     clean-disabled: true
   kafka:
-    bootstrap-servers: ${KAFKA_DATASOURCE_URL:kafka:9092}
+    bootstrap-servers: ${KAFKA_DATASOURCE_URL:localhost:9092}
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  cache:
+    type: redis
+  redis:
+    host: ${SPRING_REDIS_HOST:localhost}
+    port: ${SPRING_REDIS_PORT:6379}
+    password: ${SPRING_REDIS_PASSWORD:spring_redis_password}
+    timeout: 2000
 
 springdoc:
   api-docs:

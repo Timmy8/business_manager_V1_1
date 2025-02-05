@@ -6,6 +6,6 @@ spring:
       roles:
         - MANAGER
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://postgres_db:5432/business_manager}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/business_manager}
     username: ${SPRING_DATASOURCE_USERNAME:database_user}
     password: ${SPRING_DATASOURCE_PASSWORD:database_user_password}

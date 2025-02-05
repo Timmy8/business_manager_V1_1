@@ -1,9 +1,11 @@
 package com.github.Timmy8.service;
 
-import com.github.Timmy8.entity.Client;
 import com.github.Timmy8.entity.Proposal;
 import com.github.Timmy8.repository.ProposalRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +20,7 @@ import java.util.Optional;
 public class DefaultProposalService implements ProposalService{
     private final ProposalRepository repository;
 
+    @Cacheable(value = "proposals", key = "'allProposals'")
     @Override
     public List<Proposal> findAllProposals() {
         return repository.findAll();
@@ -28,14 +31,16 @@ public class DefaultProposalService implements ProposalService{
         return repository.findById(proposalId);
     }
 
-    @Override
+    @CacheEvict(value = "proposals", allEntries = true)
     @Transactional
+    @Override
     public Proposal createProposal(String name, String description, BigDecimal price) {
         return repository.save(new Proposal(null, name, description, price, new ArrayList<>()));
     }
 
-    @Override
+    @CacheEvict(value = "proposals", allEntries = true)
     @Transactional
+    @Override
     public void updateProposal(Integer proposalId, String name, String description, BigDecimal price) {
         repository.findById(proposalId).ifPresentOrElse(proposal -> {
             proposal.setName(name);
@@ -46,8 +51,9 @@ public class DefaultProposalService implements ProposalService{
         });
     }
 
-    @Override
+    @CacheEvict(value = "proposals", allEntries = true)
     @Transactional
+    @Override
     public void deleteProposal(Integer proposalId) {
         repository.deleteById(proposalId);
     }
