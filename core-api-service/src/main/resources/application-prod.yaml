@@ -1,0 +1,11 @@
+spring:
+  security:
+    user:
+      name: ${SPRING_SECURITY_USERNAME:admin_user_username}
+      password: ${SPRING_SECURITY_PASSWORD:admin_user_password}
+      roles:
+        - MANAGER
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://postgres_db:5432/business_manager}
+    username: ${SPRING_DATASOURCE_USERNAME:database_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:database_user_password}

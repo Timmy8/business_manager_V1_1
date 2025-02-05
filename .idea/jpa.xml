@@ -4,4 +4,13 @@
     <option name="defaultUnitInitialized" value="true" />
     <option name="renamerInitialized" value="true" />
   </component>
+  <component name="PersistenceUnitSettings">
+    <persistence-units>
+      <persistence-unit moduleName="core-api-service" name="Default">
+        <packages>
+          <package value="com.github.Timmy8" />
+        </packages>
+      </persistence-unit>
+    </persistence-units>
+  </component>
 </project>

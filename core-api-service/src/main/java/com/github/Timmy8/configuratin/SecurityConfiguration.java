@@ -18,6 +18,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET, "/manager-api/swagger-ui/**", "/manager-api/v3/api-docs/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/manager-api/clients").permitAll()
                         .requestMatchers("/manager-api/**").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.GET, "/actuator/**").authenticated()
                         .anyRequest().denyAll())
                 .csrf(AbstractHttpConfigurer::disable)
                 .httpBasic(Customizer.withDefaults())

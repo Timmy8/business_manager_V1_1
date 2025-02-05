@@ -22,6 +22,8 @@ services:
       dockerfile: /core-api-service/Dockerfile.core-api-service
     container_name: core-api-service
     environment:
+      # Profiles settings\
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}
       # Datasource settings
       SPRING_DATASOURCE_URL: ${POSTGRES_URL}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
