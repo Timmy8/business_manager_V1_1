@@ -1,4 +1,4 @@
-image: maven:3.9.9-eclipse-temurin-17  # Образ с Maven и JDK 17
+image: maven:3.9.9-eclipse-temurin-17  # Образ с Maven и eclipse JDK 17
 
 # Определяем стадии пайплайна
 stages:
