@@ -1,15 +1,24 @@
 image: maven:3.9.9-eclipse-temurin-17  # Образ с Maven и JDK 17
 
+# Определяем стадии пайплайна
 stages:
-  - test  # Определяем стадию тестирования
+  - build
+  - test
 
-cache:
-  paths:
-    - .m2/repository  # Кешируем зависимости Maven для ускорения сборки
+# Шаг для сборки проекта
+build:
+  stage: build
+  script:
+    - echo "Building project..."
+    - mvn clean install  # Сборка и установка зависимостей
+  only:
+    - master  # Выполняется только для ветки master
 
+# Шаг для запуска тестов
 test:
   stage: test
   script:
-    - mvn clean test  # Запуск тестов
+    - echo "Running tests..."
+    - mvn clean test  # Запуск тестов с Maven
   only:
-    - master  # Запускать только на основной ветке
+    - master  # Выполняется только для ветки master
