@@ -1,0 +1,15 @@
+image: maven:3.9.9-eclipse-temurin-17  # Образ с Maven и JDK 17
+
+stages:
+  - test  # Определяем стадию тестирования
+
+cache:
+  paths:
+    - .m2/repository  # Кешируем зависимости Maven для ускорения сборки
+
+test:
+  stage: test
+  script:
+    - mvn clean test  # Запуск тестов
+  only:
+    - main  # Запускать только на основной ветке
