@@ -1,24 +1,24 @@
-image: maven:3.9.9-eclipse-temurin-17  # Образ с Maven и eclipse temurin JDK 17
+image: maven:3.9.9-eclipse-temurin-21  # Eclipse temurin image with java v21
 
-# Определяем стадии пайплайна
+# Pipeline stages
 stages:
   - build
   - test
 
-# Шаг для сборки проекта
+# Building stage
 build:
   stage: build
   script:
     - echo "Building project..."
-    - mvn clean install  # Сборка и установка зависимостей
+    - mvn clean install  # Maven start building command
   only:
-    - master  # Выполняется только для ветки master
+    - master  # Only 'master' branch changes
 
-# Шаг для запуска тестов
+# Testing stage
 test:
   stage: test
   script:
     - echo "Running tests..."
-    - mvn clean test  # Запуск тестов с Maven
+    - mvn clean test  # Maven test start command
   only:
-    - master  # Выполняется только для ветки master
+    - master  # Only 'master' branch changes
