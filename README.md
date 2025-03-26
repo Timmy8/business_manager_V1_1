@@ -600,7 +600,4 @@ Built for integration and efficiency, it empowers teams to manage operations sea
 5. Create a Pull Request.
 
 ## Contact
-If you have any questions or feedback, feel free to contact me via:
-
-- Email: tima.sniezhkov1@gmail.com
-- LinkedIn: [Tsimafei Sniazhkou](https://www.linkedin.com/in/tsimafei-sniazhkou/)
+If you have any questions or feedback, feel free to contact me
