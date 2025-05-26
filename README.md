@@ -126,13 +126,13 @@ Built for integration and efficiency, it empowers teams to manage operations sea
 
 ### 1. Make appointment page
   ```bash
-  http://localhost:8000/appointment
+  http://localhost:8080/appointment
   ```
 ![image](https://github.com/user-attachments/assets/d9d00bc9-52f3-4674-9b56-5c09580629d4)
 
 ### 2. Registration page
   ```bash
-  http://localhost:8000/registration
+  http://localhost:8080/registration
   ```
 ![image](https://github.com/user-attachments/assets/daa931c1-6caf-4b02-b96e-9ba183fa9a92)
 
