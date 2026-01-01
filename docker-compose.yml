@@ -19,7 +19,7 @@ services:
   core-api-service:
     build:
       context: .
-      dockerfile: /core-api-service/Dockerfile.core-api-service
+      dockerfile: core-api-service/Dockerfile.core-api-service
     container_name: core-api-service
     environment:
       # Profiles settings\
@@ -34,7 +34,7 @@ services:
       # Kafka settings
       KAFKA_DATASOURCE_URL: ${KAFKA_DATASOURCE_URL}
       # Redis settings
-      SPRING_REDIS_HOST: ${SPRING_REDIS_HOST}
+      FSPRING_REDIS_HOST: ${SPRING_REDIS_HOST}
       SPRING_REDIS_PORT: ${SPRING_REDIS_PORT}
       SPRING_REDIS_PASSWORD: ${SPRING_REDIS_PASSWORD}
       # Actuator settings
@@ -53,7 +53,7 @@ services:
   manager-ui-app:
     build:
       context: .
-      dockerfile: /manager-ui-app/Dockerfile.manager-ui-app
+      dockerfile: manager-ui-app/Dockerfile.manager-ui-app
     container_name: manager-ui-app
     environment:
       # Connection settings
@@ -74,7 +74,7 @@ services:
   notification-service:
     build:
       context: .
-      dockerfile: /notification-service/Dockerfile.notification-service
+      dockerfile: notification-service/Dockerfile.notification-service
     container_name: notification-service
     environment:
       # Datasource settings
@@ -102,10 +102,12 @@ services:
 
   # Zookeeper
   zookeeper:
-    image: confluentinc/cp-zookeeper:latest
+    image: confluentinc/cp-zookeeper:7.5.0
     container_name: bm-zookeeper
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
+      SPRING_REDIS_HOST:
+
     ports:
       - "2181:2181"
     networks:
@@ -113,7 +115,7 @@ services:
 
   # Kafka
   kafka:
-    image: confluentinc/cp-kafka:latest
+    image: confluentinc/cp-kafka:7.5.0
     container_name: bm-kafka
     environment:
       #General settings
@@ -152,7 +154,7 @@ services:
 
   # Redis
   redis:
-    image: redis:latest
+    image: redis:7.2
     container_name: bm-redis
     ports:
       - "6379:6379"
